@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F3F6"
+    android:weightSum="1"
+    android:baselineAligned="false"
+    android:orientation="vertical">
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:text="个人" />
+
+</FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/LinearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.14"
+        android:background="@drawable/bg_layout_shape"
+        android:onClick="userinfo">
+
+
+        <ImageView
+            android:id="@+id/imageView5"
+            style="@style/img_arrow"
+            android:layout_width="38dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center"
+
+            android:duplicateParentState="true" />
+
+        <ImageView
+            android:id="@+id/iv_head"
+            android:layout_width="89dp"
+            android:layout_height="82dp"
+            android:layout_gravity="left|center"
+            android:layout_marginLeft="10dp"
+            custom:srcCompat="@drawable/bmob_update_button_ok_bg_normal" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="178dp"
+            android:layout_height="43dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="20dp"
+            android:duplicateParentState="true"
+            android:textSize="21dp" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="177dp"
+            android:layout_height="40dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="60dp"
+            android:duplicateParentState="true"
+            android:textSize="21dp" />
+
+    </FrameLayout>
+
+
+    <LinearLayout style="@style/wrap_layout" >
+        <!-- 上圆角-->
+        <LinearLayout style="@style/top_layout">
+
+            <TextView
+                style="@style/usertext"
+                android:text="我发布的" />
+            <ImageView style="@style/img_arrow"/>
+        </LinearLayout>
+
+        <!-- 分割线 -->
+        <View style="@style/bg_line"/>
+        <!-- 无圆角-->
+        <LinearLayout style="@style/mid_layout">
+
+            <TextView
+                style="@style/usertext"
+                android:text="已完成的" />
+            <ImageView style="@style/img_arrow"/>
+        </LinearLayout>
+        <View style="@style/bg_line"/>
+        <!-- 下圆角-->
+        <LinearLayout style="@style/bottom_layout">
+            <TextView style="@style/usertext" android:text="我的团体" />
+            <ImageView style="@style/img_arrow"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <!-- 全圆角-->
+    <LinearLayout style="@style/wrap_layout">
+
+        <LinearLayout
+            android:id="@+id/settings"
+
+            style="@style/single_layout">
+
+            <TextView
+                style="@style/usertext"
+                android:text="设置" />
+
+            <ImageView style="@style/img_arrow" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

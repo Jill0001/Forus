@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.bzdell.forus.Login.login">
+
+
+    <EditText
+        android:id="@+id/login1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="请输入用户名" />
+
+    <EditText
+        android:id="@+id/login2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="请输入密码"
+        android:inputType="textPassword" />
+
+    <CheckBox
+        android:id="@+id/login5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="记住密码" />
+
+    <CheckBox
+        android:id="@+id/login6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="自动登录" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/login3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="signin"
+            android:text="登录" />
+
+        <Button
+            android:id="@+id/login4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="signup0"
+            android:text="注册" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="未收到邮件？请点击下面按钮重新发送验证邮件" />
+
+    <EditText
+        android:id="@+id/login8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:hint="请输入你的邮箱" />
+
+    <Button
+        android:id="@+id/login7"
+        android:onClick="fasong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请求邮箱验证" />
+
+</LinearLayout>
