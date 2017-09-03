@@ -1,6 +1,7 @@
 package com.example.bzdell.forus.Login;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.datatype.BmobRelation;
 
 /**
  * Created by Jack on 2017/8/26.
@@ -17,7 +18,10 @@ public class UserDate extends BmobUser{
     private String phone;
     private String mingzu;
     private String shengri;
-    private BmobFile icon;
+    private String uri;
+    private String renzheng;
+    private BmobRelation love;
+    private  BmobFile icon;
 
     public String getNickname() {
         return nickname;
@@ -100,7 +104,7 @@ public class UserDate extends BmobUser{
         this.shengri = shengri;
     }
 
-    public BmobFile getIcon() {
+    public  BmobFile getIcon() {
         return icon;
     }
 
@@ -109,5 +113,28 @@ public class UserDate extends BmobUser{
     }
 
 
+    public String getUri() {
+        return uri;
+    }
 
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public String getRenzheng() {
+        return renzheng;
+    }
+
+    public void setRenzheng(String renzheng) {
+        this.renzheng = renzheng;
+    }
+
+
+    public BmobRelation getLove() {
+        return love;
+    }
+
+    public void setLove(BmobRelation love) {
+        this.love = love;
+    }
 }

@@ -9,9 +9,10 @@
     <color name="white">#fff</color>
     <color name="teal">#00796B</color>
     <color name="brown">#8D6E63</color>
-    <color name="blue">#2196f3</color>
+    <color name="blue">#03a9f4</color>
     <color name="grey">#607D8B</color>
     <color name="orange">#F57C00</color>
+    <color name="touming">#00000000</color>
 
 
 </resources>

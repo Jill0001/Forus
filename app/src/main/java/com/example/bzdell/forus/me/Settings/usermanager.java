@@ -1,4 +1,4 @@
-package com.example.bzdell.forus.me;
+package com.example.bzdell.forus.me.Settings;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.bzdell.forus.R;
+
 public class usermanager extends AppCompatActivity {
 
     @Override

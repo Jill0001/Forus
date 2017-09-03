@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.bzdell.forus.me.usermanager">
+    tools:context="com.example.bzdell.forus.me.Settings.usermanager">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

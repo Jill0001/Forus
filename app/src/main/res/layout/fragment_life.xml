@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:sp="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#c2dcef"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -27,14 +30,113 @@
 
     </FrameLayout>
 
-    <ScrollView
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#c2dcef">
+
+        <TextView
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/shape_write"
+            android:ems="10"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:hint="搜索" />
+
+        <View
+            style="@style/bg_line"
+            android:layout_gravity="bottom" />
+
+
+    </FrameLayout>
+
+
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <com.example.bzdell.forus.Utils.PullToRefreshLayoutforAutoMoreSwipe
+            android:id="@+id/refresh_view"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <include layout="@layout/refresh_head" />
+
+            <!--<ScrollView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:fillViewport="true">-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical">-->
+
+                    <!--<FrameLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="50dp">-->
+
+
+
+                    <!--</FrameLayout>-->
+
+                    <!--<FrameLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent">-->
+
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/network"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="40dp"-->
+                            <!--android:background="#efd9d9"-->
+                            <!--android:gravity="center"-->
+                            <!--android:visibility="gone"-->
+                            <!--android:text="当前网络不可用，请检查你的网络设置。"-->
+                            <!--android:textColor="#000" />-->
+
+
+                        <com.example.bzdell.forus.Utils.PullableAndAutomoreSwipListView
+                            android:id="@+id/android:list"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#fff4f7f9"
+                            android:cacheColorHint="#00000000"
+                            android:divider="#dddbdb"
+                            android:dividerHeight="1dp"
+                            sp:right_width="120dp" />
+
+                        <include layout="@layout/load_more" />
+
+
+                    <!--</FrameLayout>-->
+
+                <!--</LinearLayout>-->
+
+
+            <!--</ScrollView>-->
+
+ </com.example.bzdell.forus.Utils.PullToRefreshLayoutforAutoMoreSwipe>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/blue"
+            android:backgroundTint="@color/blue"
+            android:src="@drawable/add"
+            app:borderWidth="0dp"
+            app:elevation="8dp"
+            app:pressedTranslationZ="16dp"
+            app:rippleColor="#33728dff" />
+
+    </FrameLayout>
 
 </LinearLayout>

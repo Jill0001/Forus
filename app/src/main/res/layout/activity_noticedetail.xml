@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.example.bzdell.forus.Login.register">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:text="通知详情" />
+
+        <ImageView
+            android:onClick="nolove"
+            android:id="@+id/nolove"
+            android:layout_width="24sp"
+            android:layout_height="24sp"
+            android:layout_gravity="center|right"
+            android:layout_marginRight="20sp"
+            app:srcCompat="@drawable/loved" />
+
+        <ImageView
+            android:onClick="love"
+            android:id="@+id/love"
+            android:layout_width="24sp"
+            android:layout_height="24sp"
+            android:layout_gravity="center|right"
+            android:layout_marginRight="20sp"
+            app:srcCompat="@drawable/nolove" />
+
+
+
+
+
+
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="50sp"
+                    android:layout_height="50sp"
+                    android:layout_marginLeft="10sp"
+                    android:src="@drawable/appinfo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="105sp"
+                    android:text="著/" />
+
+                <TextView
+
+                    android:id="@+id/author0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|left"
+                    android:layout_marginLeft="85sp"
+                    android:text="作者"
+                    android:textColor="#96291c" />
+
+                <TextView
+                    android:id="@+id/time0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|right"
+                    android:layout_marginRight="10sp"
+                    android:text="发布时间" />
+
+
+            </FrameLayout>
+
+
+            <TextView
+                android:id="@+id/title0"
+                android:layout_width="340sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="标题加载中ing"
+                android:textColor="#333333"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+
+            android:layout_height="10sp"
+            android:layout_gravity="bottom" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="340sp"
+            android:layout_height="wrap_content"
+            android:lineSpacingMultiplier="1.3"
+            android:text="内容加载中ing"
+            android:textColor="#333333"
+
+
+            android:textSize="17sp"
+            android:id="@+id/content0" />
+
+
+    </LinearLayout>
+</LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

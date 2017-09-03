@@ -1,0 +1,74 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F0F3F6"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:text="新的通知" />
+
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/new1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="为你的通知取一个响亮的标题吧~" />
+
+    <EditText
+        android:id="@+id/new2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="0.58"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="通知内容"
+        android:inputType="textMultiLine" />
+
+
+
+
+
+    <Button
+        android:id="@+id/new3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加图片" />
+
+    <Button
+        android:id="@+id/new4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加文件" />
+
+    <Button
+        android:id="@+id/new5"
+        android:layout_width="match_parent"
+        android:onClick="newnotice1"
+        android:layout_height="wrap_content"
+        android:text="发布" />
+
+
+</LinearLayout>

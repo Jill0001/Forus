@@ -25,17 +25,20 @@ import cn.bmob.v3.BmobUser;
 //导致页面一直无法切换的原因是build.gradle里的ashokvarma版本太低
 
     public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
-    private ArrayList<Fragment> fragments;
+        public static MainActivity test_a = null;
+
+        private ArrayList<Fragment> fragments;
 
         private int clickTime=0;
         private int times=-1;
         private Timer timer=null;
 
-    @Override
+
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+            test_a =this;
 
 //        initView();
 
@@ -86,11 +89,15 @@ import cn.bmob.v3.BmobUser;
 
     @Override
     public void onTabSelected(int position) {
+
         if (fragments != null) {
+
             if (position < fragments.size()) {
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
+                Fragment from = fm.findFragmentById(R.id.layFrame);   //获取当前的fragment
                 Fragment fragment = fragments.get(position);
+
                 if (fragment.isAdded()) {
                     ft.replace(R.id.layFrame, fragment);
                 } else {
@@ -151,9 +158,27 @@ import cn.bmob.v3.BmobUser;
                 }
             }
         }
+//
+//        public void reLoadFragView(){
+//                   Fragment fragment = fragments.get(2);
+//
+//                   getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+//
+//                    FragmentManager fm = getSupportFragmentManager();
+//                    FragmentTransaction ft = fm.beginTransaction();
+//
+//
+//                    if (fragment.isAdded()) {
+//                        ft.replace(R.id.layFrame, fragment);
+//                    } else {
+//                        ft.add(R.id.layFrame, fragment);
+//                    }
+//                    ft.commitAllowingStateLoss();
+//                }
+            }
 
 
 
-    }
+
 
 

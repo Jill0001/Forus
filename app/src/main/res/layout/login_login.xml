@@ -7,77 +7,131 @@
     android:orientation="vertical"
     tools:context="com.example.bzdell.forus.Login.login">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="170dp"
+        android:gravity="center"
+        android:textColor="#000"
+        android:textSize="50dp"
+        android:layout_gravity="center"
+        android:text="Forus"/>
+<LinearLayout
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@drawable/shape_blue"
+    android:weightSum="1">
+
+
 
     <EditText
         android:id="@+id/login1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:ems="10"
+        android:background="@color/white"
         android:inputType="textPersonName"
-        android:hint="请输入用户名" />
+        android:hint=" 用户名/邮箱"
 
-    <EditText
+        android:layout_weight="0.70" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
         android:id="@+id/login2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:ems="10"
-        android:hint="请输入密码"
+        android:background="@color/white"
+        android:hint=" 密码"
         android:inputType="textPassword" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:onClick="mimas"
+            android:scaleType="centerInside"
+            android:layout_width="20dip"
+            android:layout_height="20dip"
+            android:layout_gravity="center|right"
+            android:background="@color/touming"
+            app:srcCompat="@drawable/ic_lock_outline" />
+
+    </FrameLayout>
+</LinearLayout>
+
+
+    <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
 
     <CheckBox
         android:id="@+id/login5"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="40dp"
         android:layout_height="wrap_content"
         android:text="记住密码" />
 
     <CheckBox
         android:id="@+id/login6"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="43dp"
         android:layout_height="wrap_content"
         android:text="自动登录" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+</FrameLayout>
+
 
         <Button
             android:id="@+id/login3"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="signin"
+            android:onClick="mima"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_blue"
             android:text="登录" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/login7"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left|center"
+            android:background="@color/touming"
+            android:layout_marginLeft="10dp"
+            android:onClick="signup2"
+            android:text="忘记密码？"
+            android:textColor="@color/blue" />
+
 
         <Button
             android:id="@+id/login4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_gravity="right"
+            android:background="@color/touming"
             android:onClick="signup0"
-            android:text="注册" />
+            android:text="新用户注册"
+            android:textColor="@color/blue" />
 
-    </LinearLayout>
+    </FrameLayout>
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="未收到邮件？请点击下面按钮重新发送验证邮件" />
-
-    <EditText
-        android:id="@+id/login8"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="请输入你的邮箱" />
-
-    <Button
-        android:id="@+id/login7"
-        android:onClick="fasong"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="请求邮箱验证" />
 
 </LinearLayout>

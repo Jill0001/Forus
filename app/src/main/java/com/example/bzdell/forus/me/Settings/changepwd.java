@@ -1,4 +1,4 @@
-package com.example.bzdell.forus.me;
+package com.example.bzdell.forus.me.Settings;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +26,7 @@ public class changepwd extends AppCompatActivity {
     }
 
     public void change(View view){
+
         String ea=a.getText().toString();
         String eb=b.getText().toString();
         String ec=c.getText().toString();

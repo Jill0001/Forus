@@ -1,17 +1,22 @@
 package com.example.bzdell.forus.Login;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bzdell.forus.R;
 import com.example.bzdell.forus.Utils.EmailCheck;
+import com.example.bzdell.forus.Utils.Timer1;
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class register extends AppCompatActivity {
 
@@ -84,7 +89,6 @@ public class register extends AppCompatActivity {
                 public void done(UserDate userDate, BmobException e) {         //自带邮箱验证，不需要再发一次。md气死我了。
                     if (e == null) {
                         Toast.makeText(register.this, "注册成功，请前往邮箱进行验证", Toast.LENGTH_SHORT).show();
-                        finish();
                     }
                     if(e.getErrorCode()==202){
                         Toast.makeText(register.this,"用户名已被注册",Toast.LENGTH_SHORT).show();
@@ -93,24 +97,44 @@ public class register extends AppCompatActivity {
                     if(e.getErrorCode()==203){
                         Toast.makeText(register.this,"邮箱已被注册",Toast.LENGTH_SHORT).show();
                     }
-                    else {
-                        Toast.makeText(register.this, "注册失败，请稍后再试", Toast.LENGTH_SHORT).show();
-                    }
+
                 }
             });
-
-
-
         }
+    }
+
+    public void yanzheng(View v){
+        TextView button =(TextView)findViewById(R.id.textView17) ;
+        Timer1 timer1 =new Timer1(button,30000,1000);
+        timer1.start();
+    final EditText editText =new EditText(register.this);
+        new AlertDialog.Builder(register.this)
+                .setTitle("请输入你的邮箱")
+                .setView(editText)
+                .setNegativeButton("取消",null)
+    .setPositiveButton("发送",new DialogInterface.OnClickListener(){
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            String mail=editText.getText().toString();
+            UserDate.requestEmailVerify(mail,new UpdateListener(){
+                @Override
+                public void done(BmobException e) {
+                    if (e==null)
+                    {
+                        Toast.makeText(register.this,"发送成功",Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            });
+        }
+    } )
+    .show();
 
     }
+
                   }
-//                                 });
-//
-//
-//
-//
-//
+//                });
 //          }
 //      }
 //    });

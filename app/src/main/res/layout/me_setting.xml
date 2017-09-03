@@ -52,8 +52,9 @@
     </LinearLayout>
         <View style="@style/bg_line"/>
         <!-- 下圆角-->
-        <LinearLayout style="@style/bottom_layout">
-            <TextView style="@style/usertext" android:text="更新日志" />
+        <LinearLayout style="@style/bottom_layout"
+            android:onClick="sendback">
+            <TextView style="@style/usertext" android:text="意见反馈" />
             <ImageView style="@style/img_arrow"/>
         </LinearLayout>
 
@@ -73,7 +74,8 @@
 
         <View style="@style/bg_line" />
 
-        <LinearLayout style="@style/mid_layout">
+        <LinearLayout style="@style/mid_layout"
+            android:onClick="appinfo">
 
             <TextView
                 style="@style/usertext"
@@ -81,6 +83,19 @@
 
             <ImageView style="@style/img_arrow" />
         </LinearLayout>
+
+        <View style="@style/bg_line" />
+
+        <LinearLayout style="@style/mid_layout">
+
+            <TextView
+                style="@style/usertext"
+                android:text="支持我们" />
+
+            <ImageView style="@style/img_arrow" />
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
