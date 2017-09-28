@@ -215,6 +215,7 @@ public class login extends AppCompatActivity implements ActivityCompat.OnRequest
         if (sp.getBoolean("CHECK", false)) {     //记住密码和自动登录功能
             cb1.setChecked(true);
             et_user.setText(sp.getString("USERNAME", ""));
+
             et_pwd.setText(sp.getString("PASSWORD", ""));
 
             if (sp.getBoolean("ACHECK", false)) {

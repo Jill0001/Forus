@@ -210,7 +210,7 @@ public class PullToRefreshLayoutforAutoMoreSwipe extends RelativeLayout implemen
 		default:
 			// 刷新失败
 			refreshStateImageView.setVisibility(View.VISIBLE);
-			refreshStateTextView.setText("刷新失败");
+			refreshStateTextView.setText("已无更多内容");
 			refreshStateImageView.setBackgroundResource(R.drawable.load_failed);
 			break;
 		}

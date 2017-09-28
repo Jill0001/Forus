@@ -17,6 +17,7 @@ public final class zujian {
      public TextView  authorview;
      public TextView timeview;
      public TextView seeview;
+
      public RelativeLayout item_right;
 
 }

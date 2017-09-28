@@ -62,7 +62,8 @@ import cn.bmob.v3.BmobUser;
         BmobPush.startWork(this);
 
     }
-        public static BmobUser getCurrentUser() {
+
+    public static BmobUser getCurrentUser() {
 
             BmobUser user = BmobUser.getCurrentUser();
             if(user!=null){
@@ -71,11 +72,12 @@ import cn.bmob.v3.BmobUser;
             return null;
         }
 
-
     private void setDefaultFragment() {     //设定默认的主页
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.replace(R.id.layFrame, lifeFragment.newInstance("生活"));
+
+
         transaction.commit();
     }
 

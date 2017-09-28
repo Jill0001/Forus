@@ -34,7 +34,7 @@ public class MyPushMessageReceiver extends BroadcastReceiver {
             NotificationManager manager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
             Notification notify = new Notification.Builder(context)
                     .setSmallIcon(R.mipmap.ic_launcher)
-                    .setContentTitle("收到一条推送")
+                    .setContentTitle("Forus软件提醒")
                     .setContentText(content)
                     .build();
             notify.flags =Notification.FLAG_INSISTENT;

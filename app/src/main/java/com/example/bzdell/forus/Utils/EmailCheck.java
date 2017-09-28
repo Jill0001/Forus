@@ -17,4 +17,5 @@ public class EmailCheck {
 
         return mc.matches();
 }
+
 }

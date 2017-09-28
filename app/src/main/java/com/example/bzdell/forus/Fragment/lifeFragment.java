@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.bzdell.forus.R;
+import com.example.bzdell.forus.Utils.ACache;
 import com.example.bzdell.forus.Utils.PullToRefreshLayoutforAutoMoreSwipe;
 import com.example.bzdell.forus.Utils.PullableAndAutomoreSwipListView;
 import com.example.bzdell.forus.Utils.Util0;
@@ -40,6 +42,7 @@ import java.util.concurrent.TimeUnit;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobRealTimeData;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.CountListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.ValueEventListener;
 
@@ -53,43 +56,44 @@ import static android.content.Context.NOTIFICATION_SERVICE;
 
 
 public class lifeFragment extends ListFragment implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener{
-    private SwipeRefreshLayout swipeRefreshLayout;
 
+    private SharedPreferences sp;
     private Notice mnotice = new Notice();
 
-    private int limit = 5;
-    private int curPage = 0;
 
 
     private TextView a, t;
     private FloatingActionButton b;
-    private int width, height;
-
+    private int width, height,i,x;
 
     private boolean isFirstIn = true;
     private PullToRefreshLayoutforAutoMoreSwipe ptrl;
     private PullableAndAutomoreSwipListView listview;
     private int PAGESIZE=20;
 
+    private ACache aCache;
 
     BmobRealTimeData rtd = new BmobRealTimeData();  //数据实时更新
 
     @Nullable
     @Override
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_life, container, false);
         b = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);//button类的控件 需要先在onCreateView 中声明，不然会失效。Textview 例外  这是因为要先获取一个view，这样才能知道是那个布局中的控件。
 //        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe2);
         ptrl = ((PullToRefreshLayoutforAutoMoreSwipe) view.findViewById(R.id.refresh_view));
-
+        sp = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         listview = (PullableAndAutomoreSwipListView) view.findViewById(android.R.id.list);//看这里的findViewById！！！，他是Android.R.id.list。
-
+        aCache=ACache.get(getActivity());
 
         ptrl.setListView(listview);
         ptrl.setOnRefreshListener(new MyListener());
 //        swipeRefreshLayout.setEnabled(false);
 
 //        a = (TextView) view.findViewById(R.id.network);
+
+
 
 //        listview();
 //        initData();
@@ -116,8 +120,10 @@ public class lifeFragment extends ListFragment implements SwipeRefreshLayout.OnR
 
 //        inits();  暂时关闭
 
-        bendishuaxin();
 
+        click();
+        bendishuaxin();
+//        initView();
         initview();
 
         t.setOnClickListener(new View.OnClickListener() {
@@ -137,10 +143,10 @@ public class lifeFragment extends ListFragment implements SwipeRefreshLayout.OnR
         return fragment;
     }
 
-    public void initData() {
-        swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorSchemeResources(R.color.blue);
-    }   //下拉刷新监视器
+//    public void initData() {
+//        swipeRefreshLayout.setOnRefreshListener(this);
+//        swipeRefreshLayout.setColorSchemeResources(R.color.blue);
+//    }   //下拉刷新监视器
 
     @Override
     public void onRefresh() {
@@ -181,23 +187,16 @@ public class lifeFragment extends ListFragment implements SwipeRefreshLayout.OnR
 
 
 
-
-
-
-
-
-
-
-        swipeRefreshLayout.setEnabled(true);
-        swipeRefreshLayout.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                swipeRefreshLayout.setRefreshing(false);
-                swipeRefreshLayout.setEnabled(false);
-
-            }
-        }, 2000);
+//        swipeRefreshLayout.setEnabled(true);
+//        swipeRefreshLayout.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                swipeRefreshLayout.setRefreshing(false);
+//                swipeRefreshLayout.setEnabled(false);
+//
+//            }
+//        }, 2000);
     }    //下拉刷新功能
 
     boolean checkNetwork() {
@@ -238,7 +237,6 @@ public class lifeFragment extends ListFragment implements SwipeRefreshLayout.OnR
         }
     }   //Listview 点击事件
 
-
 //    public void listview() {
 //        listview.setOnScrollListener(this);
 //    }       //防止listview 和 下拉刷新的冲突
@@ -266,45 +264,50 @@ public class lifeFragment extends ListFragment implements SwipeRefreshLayout.OnR
 
     public void  bendishuaxin(){
 
-        BmobQuery<Notice> query = new BmobQuery<>();
-        query.order("-createdAt");
-        query.include("author[username]");
-        query.setMaxCacheAge(TimeUnit.DAYS.toMillis(30));//
-        boolean isCache = query.hasCachedResult(Notice.class);
-        Log.d("bmob", " "+isCache);
-        query.setCachePolicy(BmobQuery.CachePolicy.CACHE_ONLY);
-        query.findObjects(new FindListener<Notice>() {
-            @Override
-            public void done(List<Notice> list, BmobException e) {
-                if (e == null) {
+//        BmobQuery<Notice> query = new BmobQuery<>();
+//        query.order("-createdAt");
+//        query.include("author[username]");
+//        query.setMaxCacheAge(TimeUnit.DAYS.toMillis(30));//
+//        boolean isCache = query.hasCachedResult(Notice.class);
+//        Log.d("bmob", " "+isCache);
+//        query.setCachePolicy(BmobQuery.CachePolicy.CACHE_ONLY);
+//        query.findObjects(new FindListener<Notice>() {
+//            @Override
+//            public void done(List<Notice> list, BmobException e) {
+//                if (e == null) {
+//
+//                    ArrayList<HashMap<String, Object>> arrayList = new ArrayList<>();
+//
+//                    for (Notice notice : list) {
+//
+//                        HashMap<String, Object> tempHashMap = new HashMap<>();
+//
+//                        tempHashMap.put("title", notice.getTitle());
+//                        tempHashMap.put("time", notice.getCreatedAt());
+//                        tempHashMap.put("content", notice.getContent());
+//                        tempHashMap.put("author", notice.author.getUsername());
+//                        tempHashMap.put("id",notice.getObjectId());
+//                        arrayList.add(tempHashMap);
+//
+//                    }
 
-                    ArrayList<HashMap<String, Object>> arrayList = new ArrayList<>();
-
-                    for (Notice notice : list) {
-
-                        HashMap<String, Object> tempHashMap = new HashMap<>();
-
-                        tempHashMap.put("title", notice.getTitle());
-                        tempHashMap.put("time", notice.getCreatedAt());
-                        tempHashMap.put("content", notice.getContent());
-                        tempHashMap.put("author", notice.author.getUsername());
-                        tempHashMap.put("id",notice.getObjectId());
-                        arrayList.add(tempHashMap);
-
-                    }
-
+                    ArrayList<HashMap<String, Object>> arrayList = ( ArrayList<HashMap<String, Object>>)aCache.getAsObject("test");
+                    if(arrayList!=null){
                     MyAdapter adapter = new MyAdapter(getActivity(), arrayList);
                     setListAdapter(adapter);
+                    }
 
-                }
-            }
 
-        });
+//                }
+//            }
+//
+//        });
 
 
     }  //加载通知
 
     public void shuaxin()
+
     {
         BmobQuery<Notice> query = new BmobQuery<>();
         query.order("-createdAt");
@@ -343,6 +346,7 @@ public class lifeFragment extends ListFragment implements SwipeRefreshLayout.OnR
 
 
     }
+
     public void inits(){
 
         rtd.start(new ValueEventListener(){
@@ -380,15 +384,27 @@ public class lifeFragment extends ListFragment implements SwipeRefreshLayout.OnR
 
     }   //实时同步（暂时关闭）
 
-
-
+//    private void initView() {
+//        ArrayList<HashMap<String, Object>> arrayList = ( ArrayList<HashMap<String, Object>>)aCache.getAsObject("test");
+//        MyAdapter adapter =new MyAdapter(getActivity(),arrayList);
+//        adapter.setOnRightItemClickListener(new MyAdapter.onRightItemClickListener() {
+//            @Override
+//            public void onRightItemClick(View v, int position) {
+//                Toast.makeText(getActivity(), "删除第  " + (position+1)+" 对话记录",
+//                        Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//
+//
+//    }
 
     class MyListener implements PullToRefreshLayoutforAutoMoreSwipe.OnRefreshListener {
 
         @Override
         public void onRefresh(final PullToRefreshLayoutforAutoMoreSwipe pullToRefreshLayout) {
 
-            if (Util0.isNetUseable(getActivity()) ){
+            if (Util0.isNetUseable(getActivity()) ) {
 
 //                // 下拉刷新操作
 //                new AsyncTask<Integer, Void, Void>() {
@@ -408,57 +424,112 @@ public class lifeFragment extends ListFragment implements SwipeRefreshLayout.OnR
 //
 //                    }
 //
-//                }.execute(200);
+//                }.execute(200)
+
+                if (sp.getInt("count", 0) == 0) {
+
+                    BmobQuery<Notice> query = new BmobQuery<>();
+                    query.order("-createdAt");
+                    query.include("author[username]");
+                    query.setMaxCacheAge(TimeUnit.DAYS.toMillis(30));
+                    boolean isCache = query.hasCachedResult(Notice.class);
+                    Log.d("bmob", " " + isCache);
+                    query.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
+                    query.findObjects(new FindListener<Notice>() {
+                        @Override
+                        public void done(List<Notice> list, BmobException e) {
+                            if (e == null) {
 
 
-
-                BmobQuery<Notice> query = new BmobQuery<>();
-                query.order("-createdAt");
-                query.include("author[username]");
-                query.setMaxCacheAge(TimeUnit.DAYS.toMillis(30));
-                boolean isCache = query.hasCachedResult(Notice.class);
-                Log.d("bmob", " "+isCache);
-                query.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
-                query.findObjects(new FindListener<Notice>() {
-                    @Override
-                    public void done(List<Notice> list, BmobException e) {
-                        if (e == null) {
-
-                            ArrayList<HashMap<String, Object>> arrayList = new ArrayList<>();
-
-                            for (Notice notice : list) {
-
-                                HashMap<String, Object> tempHashMap = new HashMap<>();
-
-                                tempHashMap.put("title", notice.getTitle());
-                                tempHashMap.put("time", notice.getCreatedAt());
-                                tempHashMap.put("content", notice.getContent());
-                                tempHashMap.put("author", notice.author.getUsername());
-                                tempHashMap.put("id",notice.getObjectId());
-                                arrayList.add(tempHashMap);
-
-                            }
-
-                            MyAdapter adapter = new MyAdapter(getActivity(), arrayList);
-                            setListAdapter(adapter);
-                            pullToRefreshLayout.refreshFinish(PullToRefreshLayoutforAutoMoreSwipe.SUCCEED);
+                                ArrayList<HashMap<String, Object>> arrayList = new ArrayList<>();
+                                for (Notice notice : list) {
+                                    HashMap<String, Object> tempHashMap = new HashMap<>();
+                                    tempHashMap.put("title", notice.getTitle());
+                                    tempHashMap.put("time", notice.getCreatedAt());
+                                    tempHashMap.put("content", notice.getContent());
+                                    tempHashMap.put("author", notice.author.getUsername());
+                                    tempHashMap.put("id", notice.getObjectId());
+                                    arrayList.add(tempHashMap);
+                                }
+                                aCache.put("test", arrayList);
+                                MyAdapter adapter = new MyAdapter(getActivity(), arrayList);
+                                setListAdapter(adapter);
+                                sp.edit().putInt("count", arrayList.size()).commit();
+                                pullToRefreshLayout.refreshFinish(PullToRefreshLayoutforAutoMoreSwipe.SUCCEED);
+                            } else
+                                pullToRefreshLayout.refreshFinish(PullToRefreshLayoutforAutoMoreSwipe.FAIL);
                         }
-                        else
-                            pullToRefreshLayout.refreshFinish(PullToRefreshLayoutforAutoMoreSwipe.FAIL);
+
+                    });
+
+
                     }
+                    else
+                        {
 
-                });
+                        BmobQuery<Notice> query0 = new BmobQuery<>();
+                        query0.count(Notice.class, new CountListener() {
+                            @Override
+                            public void done(Integer count, BmobException e) {
+                                if(e==null){
+                                   i=count;
+
+                                    if(i-sp.getInt("count", 0)-sp.getInt("count0",0)>0){
+                                        BmobQuery<Notice> query = new BmobQuery<>();
+                                        query.order("-createdAt");
+                                        query.include("author[username]");
+                                        query.setLimit(i-sp.getInt("count", 0)-sp.getInt("count0",0));
+                                        query.setMaxCacheAge(TimeUnit.DAYS.toMillis(30));
+                                        boolean isCache = query.hasCachedResult(Notice.class);
+                                        Log.d("bmob", " " + isCache);
+                                        query.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
+                                        query.findObjects(new FindListener<Notice>() {
+                                            @Override
+                                            public void done(List<Notice> list, BmobException e) {
+                                                if (e == null) {
 
 
+                                                    ArrayList<HashMap<String, Object>> arrayList = (ArrayList<HashMap<String, Object>>) aCache.getAsObject("test");
+
+                                                    for (Notice notice : list) {
+                                                        HashMap<String, Object> tempHashMap = new HashMap<>();
+                                                        tempHashMap.put("title", notice.getTitle());
+                                                        tempHashMap.put("time", notice.getCreatedAt());
+                                                        tempHashMap.put("content", notice.getContent());
+                                                        tempHashMap.put("author", notice.author.getUsername());
+                                                        tempHashMap.put("id", notice.getObjectId());
+                                                        arrayList.add(0,tempHashMap);
+                                                    }
+                                                    aCache.put("test", arrayList);
+                                                    MyAdapter adapter = new MyAdapter(getActivity(), arrayList);
+                                                    setListAdapter(adapter);
+                                                    sp.edit().putInt("count", arrayList.size()).commit();
+                                                    pullToRefreshLayout.refreshFinish(PullToRefreshLayoutforAutoMoreSwipe.SUCCEED);
+                                                }
+                                                else   pullToRefreshLayout.refreshFinish(PullToRefreshLayoutforAutoMoreSwipe.FAIL);
+                                            }
+
+                                        });
+
+                                    }
+
+                                  else   pullToRefreshLayout.refreshFinish(PullToRefreshLayoutforAutoMoreSwipe.FAIL);
+
+
+                                }else  pullToRefreshLayout.refreshFinish(PullToRefreshLayoutforAutoMoreSwipe.FAIL);
+                            }
+                        });
+
+
+
+                        }
             }
             else
-                {
-
                 pullToRefreshLayout.refreshFinish(PullToRefreshLayoutforAutoMoreSwipe.FAIL);
 
-            }
 
         }
+
 
         @Override
         public void onLoadMore(final PullToRefreshLayoutforAutoMoreSwipe pullToRefreshLayout) {
@@ -504,6 +575,28 @@ public class lifeFragment extends ListFragment implements SwipeRefreshLayout.OnR
             }
 
         }
+    }
+
+    private void click() {
+
+        ArrayList<HashMap<String, Object>> arrayList = (ArrayList<HashMap<String, Object>>) aCache.getAsObject("test");
+        MyAdapter adapter = new MyAdapter(getActivity(), arrayList);
+        adapter.setOnRightItemClickListener(new MyAdapter.onRightItemClickListener() {
+            @Override
+            public void onRightItemClick(View v, int position) {
+                sp = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                x = sp.getInt("count0", 0);
+                ArrayList<HashMap<String, Object>> arrayList = (ArrayList<HashMap<String, Object>>) aCache.getAsObject("test");
+                arrayList.remove(position - 1);
+                aCache.put("test", arrayList);
+                MyAdapter adapter = new MyAdapter(getActivity(), arrayList);
+                setListAdapter(adapter);
+                x++;
+                sp.edit().putInt("count0", x).commit();
+
+            }
+        });
+
     }
 
 }
